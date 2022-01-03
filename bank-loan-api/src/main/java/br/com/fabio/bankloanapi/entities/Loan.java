@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_loans")
-public class BankLoan {
+public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

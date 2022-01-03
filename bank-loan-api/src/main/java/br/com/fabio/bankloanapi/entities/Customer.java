@@ -28,11 +28,12 @@ public class Customer {
     @JoinColumn(name = "address_id")
     private Address address = new Address();
 
-    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "login_id")
     private Login login;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "bankLoan_id")
-    private List<BankLoan> bankLoan;
+    @JoinColumn(name = "loan_id")
+    private List<Loan> loan;
 
 }
