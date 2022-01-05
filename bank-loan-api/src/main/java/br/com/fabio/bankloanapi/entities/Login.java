@@ -23,7 +23,8 @@ public class Login {
     private String password;
     private LoginType loginType;
 
-    @OneToOne(mappedBy = "login", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
 }

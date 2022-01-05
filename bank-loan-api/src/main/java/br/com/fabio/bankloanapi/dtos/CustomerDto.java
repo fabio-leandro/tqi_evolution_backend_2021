@@ -17,6 +17,6 @@ public class CustomerDto {
     private String rg;
     private BigDecimal income;
     private AddressDto address;
-    private CustomerDtoLoginId login;
+    private LoginDto login;
 
 }

@@ -24,16 +24,13 @@ public class Customer {
     private String rg;
     private BigDecimal income;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Address address = new Address();
 
-    @OneToOne
-    @JoinColumn(name = "login_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Login login;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "loan_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Loan> loan;
 
 }

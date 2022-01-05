@@ -16,6 +16,6 @@ public class LoanDto {
     private BigDecimal loanValue;
     private int numberPayments;
     private LocalDate firstPayment;
-    private CustomerDtoId customer;
+
 
 }

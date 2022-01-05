@@ -23,6 +23,8 @@ public class Loan {
     private int numberPayments;
     private LocalDate firstPayment;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }
