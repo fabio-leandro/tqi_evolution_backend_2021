@@ -7,9 +7,9 @@ services:
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=loandb
+      - POSTGRES_DB=dbloan
     volumes:
-      - "./data/postgres:/var/lib/postgresql/data"
+      - "./data/postgres:/var/lib/postgresql/db"
   app:
     image: bank-loan-api
     build: ./
@@ -18,7 +18,7 @@ services:
     depends_on:
       - dbpostgresql
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbpostgresql:5432/loandb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbpostgresql:5432/dbloan
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update

@@ -17,5 +17,4 @@ public class LoanDto {
     private int numberPayments;
     private LocalDate firstPayment;
 
-
 }

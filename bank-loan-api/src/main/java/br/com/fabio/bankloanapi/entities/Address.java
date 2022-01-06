@@ -25,9 +25,4 @@ public class Address {
     private String state;
     private String country;
 
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
 }
