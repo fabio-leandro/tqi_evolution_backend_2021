@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -18,12 +19,24 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private BigDecimal loanValue;
-    private int numberPayments;
-    private LocalDate firstPayment;
 
+    @Column(nullable = false)
+    private BigDecimal loanValue;
+    @Column(nullable = false)
+    private int numberPayments;
+    @Column(nullable = false)
+    @NotNull(message = "The first payment cannot be null or after 90 days today.")
+    private LocalDate firstPayment;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    public void setFirstPayment(LocalDate firstPayment) {
+        LocalDate localDate = LocalDate.now();
+        int dates = firstPayment.compareTo(localDate.plusDays(90));
+        if(dates > 0)
+            this.firstPayment = null;
+        else this.firstPayment = firstPayment;
+    }
 }

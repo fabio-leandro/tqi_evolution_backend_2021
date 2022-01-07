@@ -1,14 +1,18 @@
 package br.com.fabio.bankloanapi.controllers;
 
+import br.com.fabio.bankloanapi.controllers.validators.CustomerValidationsErrors;
 import br.com.fabio.bankloanapi.dtos.CustomerDto;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;
 import br.com.fabio.bankloanapi.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/customers")
@@ -18,7 +22,7 @@ public class CustomerController {
         CustomerService customerService;
 
         @PostMapping
-        public ResponseEntity<CustomerDto> save(@RequestBody CustomerDto customerDto){
+        public ResponseEntity<CustomerDto> save(@Valid @RequestBody CustomerDto customerDto){
             return ResponseEntity.status(HttpStatus.CREATED).body(customerService.save(customerDto));
         }
 
@@ -43,5 +47,12 @@ public class CustomerController {
         public void deleteById(@PathVariable Long id) throws CustomerNotFoundException {
                 customerService.deleteById(id);
         }
+
+        @ResponseStatus(HttpStatus.BAD_REQUEST)
+        @ExceptionHandler(MethodArgumentNotValidException.class)
+        public Map<String, Object> callCustomerValidationException(MethodArgumentNotValidException ex){
+                return new CustomerValidationsErrors().callCustomerValidatorsException(ex);
+        }
+
 
 }

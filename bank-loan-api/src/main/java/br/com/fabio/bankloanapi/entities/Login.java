@@ -19,9 +19,11 @@ public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @Column(nullable = false,unique = true)
     private String email;
+    @Column(nullable = false, unique = true)
     private String password;
+    @Column(nullable = false)
     private LoginType loginType;
-
 
 }

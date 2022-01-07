@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -19,9 +20,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(unique = true,nullable = false)
     private String cpf;
+    @Column(unique = true,nullable = false)
     private String rg;
+    @Column(nullable = false)
     private BigDecimal income;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
