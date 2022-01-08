@@ -1,4 +1,4 @@
-package br.com.fabio.bankloanapi.controllers;
+package br.com.fabio.bankloanapi.controllers.validators;
 
 import br.com.fabio.bankloanapi.controllers.errors.MessageError;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;

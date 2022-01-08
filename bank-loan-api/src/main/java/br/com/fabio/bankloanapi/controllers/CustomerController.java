@@ -4,6 +4,7 @@ import br.com.fabio.bankloanapi.controllers.validators.CustomerValidationsErrors
 import br.com.fabio.bankloanapi.dtos.CustomerDto;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;
 import br.com.fabio.bankloanapi.services.CustomerService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CustomerController {
         CustomerService customerService;
 
         @PostMapping
-        public ResponseEntity<CustomerDto> save(@Valid @RequestBody CustomerDto customerDto){
+        public ResponseEntity<CustomerDto> save(@RequestBody @Valid CustomerDto customerDto){
             return ResponseEntity.status(HttpStatus.CREATED).body(customerService.save(customerDto));
         }
 
@@ -51,6 +52,12 @@ public class CustomerController {
         @ResponseStatus(HttpStatus.BAD_REQUEST)
         @ExceptionHandler(MethodArgumentNotValidException.class)
         public Map<String, Object> callCustomerValidationException(MethodArgumentNotValidException ex){
+                return new CustomerValidationsErrors().callCustomerValidatorsException(ex);
+        }
+
+        @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+        @ExceptionHandler(ConstraintViolationException.class)
+        public Map<String, Object> callCustomerValidationException(ConstraintViolationException ex){
                 return new CustomerValidationsErrors().callCustomerValidatorsException(ex);
         }
 

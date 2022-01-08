@@ -1,5 +1,6 @@
 package br.com.fabio.bankloanapi.controllers.validators;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -29,6 +30,28 @@ public class CustomerValidationsErrors {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
+
+
+        return errors;
+    }
+
+    public Map<String, Object> callCustomerValidatorsException(ConstraintViolationException ex){
+
+        Map<String, Object> errors = new HashMap<>();
+
+        Instant timestamp = Instant.now();
+        Integer status = HttpStatus.BAD_REQUEST.value();
+        String errorDescription = "The field cannot be validated";
+        String path = "api/v1/customers";
+
+        String message = ex.getCause().getMessage();
+        String[] messageSplit = message.split("Detail:");
+
+        errors.put("timestamp", timestamp);
+        errors.put("status", status);
+        errors.put("error", errorDescription);
+        errors.put("path", path);
+        errors.put("message", messageSplit[1]);
 
 
         return errors;

@@ -24,7 +24,7 @@ public class LoanController {
     public LoanService loanService;
 
     @PostMapping("/{idCustomer}")
-    public ResponseEntity<LoanDto> save(@Valid @RequestBody LoanDto loanDto, @PathVariable Long idCustomer)
+    public ResponseEntity<LoanDto> save(@RequestBody @Valid LoanDto loanDto, @PathVariable Long idCustomer)
             throws CustomerNotFoundException {
         return ResponseEntity.status(HttpStatus.CREATED).body(loanService.save(loanDto, idCustomer));
     }

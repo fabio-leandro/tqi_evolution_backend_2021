@@ -32,11 +32,5 @@ public class Loan {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public void setFirstPayment(LocalDate firstPayment) {
-        LocalDate localDate = LocalDate.now();
-        int dates = firstPayment.compareTo(localDate.plusDays(90));
-        if(dates > 0)
-            this.firstPayment = null;
-        else this.firstPayment = firstPayment;
-    }
+
 }

@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 
 @Data
 @AllArgsConstructor
@@ -13,11 +17,12 @@ import javax.validation.constraints.NotEmpty;
 public class LoginDto {
 
     private Long id;
-    @NotEmpty(message = "The email field cannot be blank.")
+    @NotBlank(message = "The email field cannot be blank.")
+    @Email(message = "The informed email is not valid.")
     private String email;
-    @NotEmpty(message = "The password field cannot be blank.")
+    @NotBlank(message = "The password field cannot be blank.")
     private String password;
-    @NotEmpty(message = "The login type field cannot be blank.")
+    @Enumerated(value = EnumType.STRING)
     private LoginType loginType;
 
 }

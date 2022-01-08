@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Data
@@ -14,6 +15,7 @@ public class AddressDto {
 
     private Long id;
     @NotBlank(message = "The cep field cannot be blank.")
+    @Size(min = 9, max = 9, message = "The informed cep is not valid.")
     private String cep;
     @NotBlank(message = "The street field cannot be blank.")
     private String street;

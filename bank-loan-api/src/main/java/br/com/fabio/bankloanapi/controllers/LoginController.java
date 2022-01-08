@@ -20,7 +20,7 @@ public class LoginController {
         public LoginService loginService;
 
         @PostMapping
-        public ResponseEntity<LoginDto> save (@Valid @RequestBody LoginDto loginDto){
+        public ResponseEntity<LoginDto> save (@RequestBody @Valid LoginDto loginDto){
             return ResponseEntity.status(HttpStatus.CREATED).body(loginService.save(loginDto));
         }
 
