@@ -4,6 +4,7 @@ import br.com.fabio.bankloanapi.controllers.validators.LoanValidationsErrors;
 import br.com.fabio.bankloanapi.dtos.DetailsLoanDto;
 import br.com.fabio.bankloanapi.dtos.LoanDto;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;
+import br.com.fabio.bankloanapi.exceptions.LoanFirstPaymentException;
 import br.com.fabio.bankloanapi.exceptions.LoanNotFoundException;
 import br.com.fabio.bankloanapi.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class LoanController {
 
     @PostMapping("/{idCustomer}")
     public ResponseEntity<LoanDto> save(@RequestBody @Valid LoanDto loanDto, @PathVariable Long idCustomer)
-            throws CustomerNotFoundException {
+            throws CustomerNotFoundException, LoanFirstPaymentException {
         return ResponseEntity.status(HttpStatus.CREATED).body(loanService.save(loanDto, idCustomer));
     }
 

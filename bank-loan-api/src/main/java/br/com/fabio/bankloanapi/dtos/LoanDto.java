@@ -1,6 +1,5 @@
 package br.com.fabio.bankloanapi.dtos;
 
-import br.com.fabio.bankloanapi.controllers.validators.FirstPaymentValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +22,7 @@ public class LoanDto {
     @Max(value = 60, message = "The number of payments cannot be bigger than 60 payments.")
     private int numberPayments;
 
-    @FutureOrPresent(message = "Date for first payment is invalid.")
-    @FirstPaymentValidation
+    @FutureOrPresent(message = "First payment date is invalid.")
     private LocalDate firstPayment;
 
 

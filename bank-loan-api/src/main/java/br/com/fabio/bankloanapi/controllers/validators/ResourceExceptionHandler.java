@@ -2,6 +2,7 @@ package br.com.fabio.bankloanapi.controllers.validators;
 
 import br.com.fabio.bankloanapi.controllers.errors.MessageError;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;
+import br.com.fabio.bankloanapi.exceptions.LoanFirstPaymentException;
 import br.com.fabio.bankloanapi.exceptions.LoanNotFoundException;
 import br.com.fabio.bankloanapi.exceptions.LoginNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,22 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 
     }
+
+    @ExceptionHandler
+    public ResponseEntity<MessageError> callLoanFirstPaymentException(LoanFirstPaymentException e,
+                                                                      HttpServletRequest request){
+        MessageError err = new MessageError();
+
+        err.setTimestamp(Instant.now());
+        err.setStatus(HttpStatus.BAD_REQUEST.value());
+        err.setError("The first payment invalid!");
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+
+    }
+
+
 
 
 }

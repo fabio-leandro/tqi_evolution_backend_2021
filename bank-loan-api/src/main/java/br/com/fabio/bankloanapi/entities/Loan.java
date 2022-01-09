@@ -25,7 +25,6 @@ public class Loan {
     @Column(nullable = false)
     private int numberPayments;
     @Column(nullable = false)
-    @NotNull(message = "The first payment cannot be null or after 90 days today.")
     private LocalDate firstPayment;
 
     @ManyToOne
