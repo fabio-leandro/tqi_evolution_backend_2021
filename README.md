@@ -28,6 +28,12 @@ O cliente acessa o front-end pela primeira vez e para continuar precisa fazer o 
  Para listar todos os empréstimos referente a um cliente é possível fazendo uma requisição GET e enviando como parâmetro o código do cliente.
  Para detalhar um empréstimo especifico do clientes foi criado um DTO (DetailsLoanDto). Nessa requisição GET é necssário enviar como parâmetro os códigos do cliente e o código do empréstimo.
  
+ <h3>Exceptions e Validações</h3>
+ 
+ Com a classe ExceptionHandler em conjunto com mensagens de erros customizadas é possível inteceptar os erros de BAD_REQUEST validados com o BeanValidation do Spring.
+ 
+ Foram criadas exceptions e mensagens customizados para requisições que não encontram objetos no banco de dados.
+ 
  <h3>Ferramentas</h3>
  <dl>
         <li>Java 11</li>
@@ -43,7 +49,7 @@ O cliente acessa o front-end pela primeira vez e para continuar precisa fazer o 
 <h3>Bibliotecas Auxiliares</h3>
  <dl>
         <li>Lombok - Auxlia na otimização de códigos</li>
-        <li>ModelMapper - Auxilia no mapeamento de objetos. Possiblitou copy propriedades entre as Entidades e os seus DTOs</li>
+        <li>ModelMapper - Auxilia no mapeamento de objetos. Possiblitou copiar propriedades entre as Entidades e os seus DTOs</li>
         
 </dl>
  
