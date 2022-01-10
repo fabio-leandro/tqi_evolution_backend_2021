@@ -9,3 +9,5 @@ Imagina-se um cenário hipotético onde essa solução faz parte de um ecossiste
  <h3>História</h3>
 O cliente acessa o front-end pela primeira vez e para continuar precisa fazer o seu cadastro com dados pessoais e informações de login. Feito o cadastro o cliente poderá solicitar um empréstimo, listar todos os empréstimos que ele solicitou e detalhar um empréstimo solicitado. Tem a possibilidade de conferir e atualizar os dados pessoais, tão como cancelar e recuperar a senha. Depois de cadastratado o cliente terá um acesso com email e senha.
 
+  <h3>Entidades</h3>
+ <img src="https://drive.google.com/file/d/1m6EfFbJcygwYhWJ-ALDPYBiQ8gC0Fb_A/view?usp=sharing" alt="">
