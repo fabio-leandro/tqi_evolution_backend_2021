@@ -39,7 +39,13 @@ O cliente acessa o front-end pela primeira vez e para continuar precisa fazer o 
         <li>Postman</li>
         <li>intellij</li>
 </dl>
- 
+
+<h3>Bibliotecas Auxiliares</h3>
+ <dl>
+        <li>Lombok - Auxlia na otimização de códigos</li>
+        <li>ModelMapper - Auxilia no mapeamento de objetos. Possiblitou copy propriedades entre as Entidades e os seus DTOs</li>
+        
+</dl>
  
 
  
