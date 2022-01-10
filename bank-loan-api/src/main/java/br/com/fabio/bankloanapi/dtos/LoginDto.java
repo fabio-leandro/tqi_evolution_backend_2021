@@ -1,12 +1,9 @@
 package br.com.fabio.bankloanapi.dtos;
 
-import br.com.fabio.bankloanapi.entities.enums.LoginType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -22,7 +19,6 @@ public class LoginDto {
     private String email;
     @NotBlank(message = "The password field cannot be blank.")
     private String password;
-    @Enumerated(value = EnumType.STRING)
-    private LoginType loginType;
+
 
 }

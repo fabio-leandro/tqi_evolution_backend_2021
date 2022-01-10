@@ -24,18 +24,23 @@ public class LoanController {
     @Autowired
     public LoanService loanService;
 
-    @PostMapping("/{idCustomer}")
+    @PostMapping("/requestLoan/{idCustomer}")
     public ResponseEntity<LoanDto> save(@RequestBody @Valid LoanDto loanDto, @PathVariable Long idCustomer)
             throws CustomerNotFoundException, LoanFirstPaymentException {
         return ResponseEntity.status(HttpStatus.CREATED).body(loanService.save(loanDto, idCustomer));
     }
 
-    @GetMapping
+    @GetMapping("/listAllLoans")
+    public ResponseEntity<List<LoanDto>> findAllLoans(){
+        return ResponseEntity.status(HttpStatus.OK).body(loanService.findAllLoans());
+    }
+
+    @GetMapping("/listAllLoansByCustomer")
     public ResponseEntity<List<LoanDto>> findAllByCustomerId(@RequestParam Long idCustomer){
         return ResponseEntity.status(HttpStatus.OK).body(loanService.findAllByCustomerId(idCustomer));
     }
 
-    @GetMapping("/details")
+    @GetMapping("/detailsLoanByCustomer")
     public ResponseEntity<DetailsLoanDto> getDetailsLoan(@RequestParam Long idLoan,
                                                          @RequestParam Long idCustomer) throws LoanNotFoundException {
         return ResponseEntity.status(HttpStatus.OK).body(loanService.findByIdAndCustomerId(idLoan,idCustomer));

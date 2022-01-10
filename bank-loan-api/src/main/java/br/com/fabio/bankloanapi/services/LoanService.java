@@ -37,6 +37,12 @@ public class LoanService {
         return modelMapper.map(loan,LoanDto.class);
     }
 
+    public List<LoanDto> findAllLoans(){
+        List<Loan> listLoan = loanRepository.findAll();
+        return listLoan.stream().map(l -> modelMapper.map(l, LoanDto.class))
+                .collect(Collectors.toList());
+    }
+
     public List<LoanDto> findAllByCustomerId(Long idCostumer){
         List<Loan> listLoan = loanRepository.findAllByCustomerId(idCostumer);
         return listLoan.stream().map(l -> modelMapper.map(l,LoanDto.class))

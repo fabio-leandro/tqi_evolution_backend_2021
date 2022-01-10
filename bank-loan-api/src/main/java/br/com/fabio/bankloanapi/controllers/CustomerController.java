@@ -22,28 +22,28 @@ public class CustomerController {
         @Autowired
         CustomerService customerService;
 
-        @PostMapping
+        @PostMapping("/registerCustomer")
         public ResponseEntity<CustomerDto> save(@RequestBody @Valid CustomerDto customerDto){
             return ResponseEntity.status(HttpStatus.CREATED).body(customerService.save(customerDto));
         }
 
-        @GetMapping
+        @GetMapping("/listAllCustomers")
         public ResponseEntity<List<CustomerDto>> findAll(){
                 return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll());
         }
 
-        @GetMapping("/{id}")
+        @GetMapping("/seeRegisterCustomer/{id}")
         public ResponseEntity<CustomerDto> findById(@PathVariable Long id) throws CustomerNotFoundException {
                 return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
         }
 
-        @PutMapping("/{id}")
+        @PutMapping("/updateRegisterCustomer/{id}")
         public ResponseEntity<CustomerDto> updateById(@PathVariable Long id, @RequestBody CustomerDto customerDto)
                                                         throws CustomerNotFoundException {
                 return ResponseEntity.status(HttpStatus.OK).body(customerService.updateById(id,customerDto));
         }
 
-        @DeleteMapping("/{id}")
+        @DeleteMapping("/cancelRegisterCustomer/{id}")
         @ResponseStatus(HttpStatus.NO_CONTENT)
         public void deleteById(@PathVariable Long id) throws CustomerNotFoundException {
                 customerService.deleteById(id);

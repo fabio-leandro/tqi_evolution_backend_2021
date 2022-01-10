@@ -2,12 +2,16 @@ package br.com.fabio.bankloanapi.services;
 
 import br.com.fabio.bankloanapi.dtos.CustomerDto;
 import br.com.fabio.bankloanapi.entities.Customer;
+import br.com.fabio.bankloanapi.entities.Role;
 import br.com.fabio.bankloanapi.exceptions.CustomerNotFoundException;
 import br.com.fabio.bankloanapi.repositories.CustomerRepository;
+import br.com.fabio.bankloanapi.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +22,18 @@ public class CustomerService {
         CustomerRepository customerRepository;
 
         @Autowired
+        RoleRepository roleRepository;
+
+        @Autowired
         ModelMapper modelMapper;
 
         public CustomerDto save(CustomerDto customerDto){
             Customer customer = modelMapper.map(customerDto, Customer.class);
-            return modelMapper.map(customerRepository.save(customer),CustomerDto.class);
+            customer.getLogin().setPassword(new BCryptPasswordEncoder().encode(customer.getLogin().getPassword()));
+            Role role = roleRepository.save(new Role("ROLE_CUSTOMER"));
+            customer.getLogin().setRoles(List.of(role));
+            customerRepository.save(customer);
+            return modelMapper.map(customer,CustomerDto.class);
         }
 
         public List<CustomerDto> findAll(){
