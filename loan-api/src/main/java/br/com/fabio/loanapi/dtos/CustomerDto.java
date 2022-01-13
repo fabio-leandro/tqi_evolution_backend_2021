@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class CustomerDto {
 
-    private String id;
+    private Long id;
     @NotBlank(message = "The name field cannot be blank.")
     @Size(min = 2, message = "The name field is invalid.")
     private String name;

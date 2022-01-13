@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 @ComponentScan(basePackageClasses = LoanApiApplication.class)
 public class AppConfig {
@@ -14,6 +15,5 @@ public class AppConfig {
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
-
 
 }
