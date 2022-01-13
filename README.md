@@ -43,6 +43,7 @@ O cliente acessa o front-end pela primeira vez e para continuar precisa fazer o 
         <li>Postgres SQL</li>
         <li>WSL2 e UBUNTU</li>
         <li>Postman</li>
+        <li>Swagger</li>
         <li>intellij</li>
 </dl>
 
